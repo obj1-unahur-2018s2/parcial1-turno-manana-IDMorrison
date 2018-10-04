@@ -64,5 +64,8 @@ describe "etapa1" {
 		assert.equals(0,empresa1.cuantosEstudiaronEn(sanMartin))
 	}
 	
-
+	test " provinciasCubiertas()" {
+		assert.that(empresa1.provinciasCubiertas("Cordoba"))
+		assert.notThat(empresa1.provinciasCubiertas("La Rioja"))
+	}
 }

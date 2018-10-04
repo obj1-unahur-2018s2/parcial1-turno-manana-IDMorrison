@@ -11,14 +11,11 @@ describe " etapa2 " {
 		
 		
 	}
-	test " " {
+	test " recaudado() y pasarDinero() " {
 		rocio.cobrar(5000)
-		/*assert.equals(5000,juana.recaudado())
+		assert.equals(5000,rocio.recaudado())
 		rocio.pasarDinero(juana,1000)
 		assert.equals(500,sanMartin.donaciones())	
-		*/
-
-	
 	}
 
 }

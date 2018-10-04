@@ -1,0 +1,76 @@
+import profesionales.*
+import universidad.*
+import solicitantes.*
+
+describe " etapa3 " {
+	var sanMartin = new Universidad()
+	var rosario = new Universidad()
+	var corrientes = new Universidad()
+	var hurlingham = new Universidad()
+	
+	var juana = new ProfesionalVinculado()
+	var melina = new ProfesionalAsociado()
+	var rocio = new ProfesionalLibre()
+	var luciana = new ProfesionalLibre()
+	
+	var empresa1 = new Empresa()
+	var solicitante1 = new Persona()
+	
+	fixture {
+		// Universidades
+		sanMartin.setProvincia("Buenos Aires")
+		sanMartin.setHonorarioRecomendado(3500)
+		rosario.setProvincia("Santa Fe")
+		rosario.setHonorarioRecomendado(2800)
+		corrientes.setProvincia("Corrientes")
+		corrientes.setHonorarioRecomendado(4200)
+		hurlingham.setProvincia("Buenos Aires")
+		hurlingham.setHonorarioRecomendado(8800)
+		
+		// Profesionales
+		juana.setUniversidad(rosario)
+		melina.setUniversidad(corrientes)
+		rocio.setUniversidad(hurlingham)
+		rocio.setHonorarios(5000)
+		rocio.agregarProvincias("Santa Fe")
+		rocio.agregarProvincias("Buenos Aires")
+		rocio.agregarProvincias("Cordoba")
+		luciana.setUniversidad(rosario)
+		luciana.setHonorarios(3200)
+		luciana.agregarProvincias("Santa Fe")
+		luciana.agregarProvincias("Entre Rios")
+		
+		// Empresa
+		empresa1.setHonorarioDeReferencia(3500)
+		empresa1.agregarEmpleado(juana)
+		empresa1.agregarEmpleado(melina)
+		empresa1.agregarEmpleado(rocio)
+		empresa1.agregarEmpleado(luciana)
+		
+		// Solicitante
+		solicitante1.setProvincia("Buenos Aires")
+		
+		
+		
+	}
+	test " puedeSerAtendidoPor(prof) " {
+		assert.that(solicitante1.puedeSerAtendidoPor(rocio))
+		assert.notThat(solicitante1.puedeSerAtendidoPor(juana))	
+	}
+	
+	test " empresa.puedeSatisfacer(solicitante) " {
+		// pruebo Persona
+		assert.that(empresa1.puedeSatisfacer(solicitante1))
+		
+		var solicitante2 = new Persona()
+		solicitante2.setProvincia("Mendoza")
+		assert.notThat(empresa1.puedeSatisfacer(solicitante2))
+		
+		// pruebo Institucion
+		var solicitante3 = new Institucion()
+		solicitante3.agregarUniversidad(sanMartin)
+		assert.notThat(empresa1.puedeSatisfacer(solicitante3))
+		 
+	}
+
+}

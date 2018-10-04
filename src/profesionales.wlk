@@ -1,4 +1,3 @@
-// esta clase está completa, no necesita nada más . LISTO
 class ProfesionalAsociado {
 	var universidad
 	
@@ -10,7 +9,7 @@ class ProfesionalAsociado {
 	method cobrar(cant) { asociacionDeProfesionales.recaudar(cant) }
 }
 object asociacionDeProfesionales { 
-	var totalRecaudado
+	var totalRecaudado = 0
 	method recaudar(cant) { 
 		totalRecaudado = totalRecaudado + cant
 	}
@@ -18,25 +17,22 @@ object asociacionDeProfesionales {
 }
 
 
-
-// a esta clase le faltan métodos . LISTO
 class ProfesionalVinculado {
 	var universidad
 	method universidad() { return universidad }
 	method setUniversidad(univ) { universidad = univ }
 	
-	method provinciasDondePuedeTrabajar() { return universidad.provincia().asSet() }
+	method provinciasDondePuedeTrabajar() { return #{universidad.provincia()} }
 	method honorariosPorHora() { return universidad.honorarioRecomendado() }
 	method cobrar(cant) { universidad.recibirDonacion(cant/2) }
 }
 
 
-// a esta clase le faltan atributos y métodos . LISTO
 class ProfesionalLibre {
 	var universidad
 	var provincias = #{}
 	var honorarios
-	var recaudado
+	var recaudado = 0 
 	method universidad() { return universidad }
 	method setUniversidad(univ) { universidad = univ }
 	

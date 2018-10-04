@@ -1,7 +1,7 @@
 class Universidad{
 	var honorario
 	var provincia
-	var donaciones
+	var donaciones = 0
 	method setProvincia(_provincia) { provincia=_provincia }
 	method provincia() { return provincia }
 	method setHonorarioRecomendado(hono) { honorario=hono }
@@ -29,10 +29,14 @@ class Empresa{
 	}
 	// completar provinciasCubiertas()
 	method provinciasCubiertas(prov)  { 
-		return empleados.map({ universidad => universidad.provinciasDondePuedeTrabajar()})
+		return empleados.any({ empleado => empleado.provinciasDondePuedeTrabajar().any({ provinc => provinc == prov })})
 	}
 	method cuantosEstudiaronEn(univ) { 
 		return empleados.count({ empleado => empleado.universidad()==univ })
 	}
 	// falta metodo DIFICIL
+	
+	method puedeSatisfacer(solicitante) { 
+		return empleados.any({empleado => solicitante.puedeSerAtendidoPor(empleado)})
+	}
 }
