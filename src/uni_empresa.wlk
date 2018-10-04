@@ -27,15 +27,20 @@ class Empresa{
 	method profesionalMasBarato() { 
 		return empleados.min({ empleado => empleado.honorariosPorHora() })
 	}
-	// completar provinciasCubiertas()
+
 	method provinciasCubiertas(prov)  { 
 		return empleados.any({ empleado => empleado.provinciasDondePuedeTrabajar().any({ provinc => provinc == prov })})
 	}
 	method cuantosEstudiaronEn(univ) { 
 		return empleados.count({ empleado => empleado.universidad()==univ })
 	}
-	// falta metodo DIFICIL
 	
+	//  Me salio el metodo DIFICIL!!
+	method esPocoAtractivo(prof) {
+		return prof.provinciasDondePuedeTrabajar().all({provincia => empleados.any(
+			{ empleado => empleado.provinciasDondePuedeTrabajar().contains(provincia)}
+		)})
+	}
 	method puedeSatisfacer(solicitante) { 
 		return empleados.any({empleado => solicitante.puedeSerAtendidoPor(empleado)})
 	}

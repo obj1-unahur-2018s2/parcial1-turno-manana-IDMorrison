@@ -1,5 +1,5 @@
 import profesionales.*
-import universidad.*
+import uni_empresa.*
 
 describe " etapa2 " {
 	var sanMartin = new Universidad()

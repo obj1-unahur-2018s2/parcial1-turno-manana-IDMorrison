@@ -1,5 +1,5 @@
 import profesionales.*
-import universidad.*
+import uni_empresa.*
 
 class Persona{
 	var provincia

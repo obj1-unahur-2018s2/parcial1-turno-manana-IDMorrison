@@ -1,5 +1,5 @@
 import profesionales.*
-import universidad.*
+import uni_empresa.*
 
 describe "etapa1" {
 		var sanMartin = new Universidad()
@@ -68,4 +68,15 @@ describe "etapa1" {
 		assert.that(empresa1.provinciasCubiertas("Cordoba"))
 		assert.notThat(empresa1.provinciasCubiertas("La Rioja"))
 	}
+	
+	test " esPocoAtractivo(prof) " {
+		var profX = new ProfesionalLibre()
+		profX.agregarProvincias("Entre Rios")
+		assert.that(empresa1.esPocoAtractivo(profX))
+		profX.agregarProvincias("Mendoza")
+		assert.notThat(empresa1.esPocoAtractivo(profX))
+		
+	}
+
+
 }
