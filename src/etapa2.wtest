@@ -1,0 +1,24 @@
+import profesionales.*
+import universidad.*
+
+describe " etapa2 " {
+	var sanMartin = new Universidad()
+	var rocio = new ProfesionalLibre()
+	var juana = new ProfesionalVinculado()
+	fixture {
+		juana.setUniversidad(sanMartin)
+		rocio.setUniversidad(sanMartin)
+		
+		
+	}
+	test " " {
+		rocio.cobrar(5000)
+		/*assert.equals(5000,juana.recaudado())
+		rocio.pasarDinero(juana,1000)
+		assert.equals(500,sanMartin.donaciones())	
+		*/
+
+	
+	}
+
+}

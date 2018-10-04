@@ -1,0 +1,68 @@
+import profesionales.*
+import universidad.*
+
+describe "etapa1" {
+		var sanMartin = new Universidad()
+		var rosario = new Universidad()
+		var corrientes = new Universidad()
+		var hurlingham = new Universidad()
+		
+		var juana = new ProfesionalVinculado()
+		var melina = new ProfesionalAsociado()
+		var rocio = new ProfesionalLibre()
+		var luciana = new ProfesionalLibre()
+		
+		var empresa1 = new Empresa()
+	
+	fixture  {
+		// Universidades
+		sanMartin.setProvincia("Buenos Aires")
+		sanMartin.setHonorarioRecomendado(3500)
+		rosario.setProvincia("Santa Fe")
+		rosario.setHonorarioRecomendado(2800)
+		corrientes.setProvincia("Corrientes")
+		corrientes.setHonorarioRecomendado(4200)
+		hurlingham.setProvincia("Buenos Aires")
+		hurlingham.setHonorarioRecomendado(8800)
+		
+		// Profesionales
+		juana.setUniversidad(rosario)
+		melina.setUniversidad(corrientes)
+		rocio.setUniversidad(hurlingham)
+		rocio.setHonorarios(5000)
+		rocio.agregarProvincias("Santa Fe")
+		rocio.agregarProvincias("Buenos Aires")
+		rocio.agregarProvincias("Cordoba")
+		luciana.setUniversidad(rosario)
+		luciana.setHonorarios(3200)
+		luciana.agregarProvincias("Santa Fe")
+		luciana.agregarProvincias("Entre Rios")
+		
+		// Empresa
+		empresa1.setHonorarioDeReferencia(3500)
+		empresa1.agregarEmpleado(juana)
+		empresa1.agregarEmpleado(melina)
+		empresa1.agregarEmpleado(rocio)
+		empresa1.agregarEmpleado(luciana)
+	}
+	
+	test " profesionalesCaros()" {
+		assert.that(empresa1.profesionalesCaros()==[rocio])
+	}
+	
+	test " universidadesFormadoras()"{
+		assert.that(empresa1.universidadesFormadoras()==#{rosario,corrientes,hurlingham})
+	}
+	
+	test " profesionalMasBarato() " {
+		assert.that(empresa1.profesionalMasBarato()==juana)
+	}
+	
+	test " cuantosEstudiaronEn() "{
+		assert.equals(2,empresa1.cuantosEstudiaronEn(rosario))
+		assert.equals(1,empresa1.cuantosEstudiaronEn(hurlingham))
+		assert.equals(0,empresa1.cuantosEstudiaronEn(sanMartin))
+	}
+	
+
+}
